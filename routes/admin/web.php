@@ -18,16 +18,12 @@ Route::group(['prefix'=>'/admin','namespace'=>'Admin'],function(){
        require_once __DIR__.'/login.php';
         //文件上传
        Route::post('upload','BaseController@upload')->name('upload');
-       Route::get('index','AdminController@index')->name('index');
-      //后台欢迎页
-        Route::get('welcome','AdminController@welcome')->name('welcome');
-       /*
        Route::group(['middleware' => 'admin.auth'],function(){
            //后台首页
            Route::get('index','AdminController@index')->name('index');
            //后台欢迎页
-           Route::get('welcome','IndexController@welcome');
-           //等级管理
+           Route::get('welcome','AdminController@welcome')->name('welcome');
+            //等级管理
            Route::resource('level','LevelController');
            //意见反馈
            Route::resource('feedback','FeedbackController');
@@ -38,8 +34,4 @@ Route::group(['prefix'=>'/admin','namespace'=>'Admin'],function(){
            //活动管理
            Route::resource('activity','ActivityController');
        });
-*/
-
-
-
 });

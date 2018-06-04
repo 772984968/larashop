@@ -1,5 +1,8 @@
 @extends('layouts.admin')
-        @section('title','首页')
+@section('_meta')
+    @include('layouts._meta')
+@endsection
+@section('title','首页')
 @section('content')
 <div class="page-container">
     <p class="f-20 text-success">欢迎使用H-ui.admin <span class="f-14">v3.1</span>后台模版！</p>

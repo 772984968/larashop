@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('_meta')
+    @include('layouts._meta');
+@endsection
 @section('title', '后台首页')
 @section('content')
     {{--header--}}
