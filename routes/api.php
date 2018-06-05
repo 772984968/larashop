@@ -1,18 +1,27 @@
 <?php
+$api = app('Dingo\Api\Routing\Router');
+$api->version('v1', function ($api) {
+    $api->group(['namespace'=>'App\Http\Controllers\Api'],function($api){
+         //用户管理
+        $api->group(['prefix'=>'user'],function($api){
+            require_once __DIR__.'/api/user.php';
+        });
+        //成语管理
+        $api->group(['prefix'=>'idiom','middleware' => 'auth:api'],function($api){
+            require_once __DIR__.'/api/idiom.php';
+        });
+        //回顾管理
+        $api->group(['prefix'=>'review'],function($api){
+            require_once __DIR__.'/api/review.php';
+        });
 
-use Illuminate\Http\Request;
+        //常用类接口
+        $api->group(['prefix'=>'common','middleware'=>'auth:api'],function($api){
+            require_once __DIR__.'/api/common.php';
+        });
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+        //权限验证
+        $api->group(['middleware' => 'auth:api'], function ($api) {
+        });
+    });
 });
